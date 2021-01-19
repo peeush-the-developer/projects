@@ -4,9 +4,12 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error
 import joblib
 
+import os
+import config
+
 def run(fold):
     # Read the training data with folds
-    df = pd.read_csv('../input/train_folds.csv')
+    df = pd.read_csv(config.TRAINING_FILE)
 
     # Split the data into train and validation
     # Training data is where kfold != fold value. Reset the index too
@@ -37,7 +40,9 @@ def run(fold):
     print(f'Fold={fold}, RMSE={rmse:3f}')
 
     # save the model
-    joblib.dump(lr, f'../models/lr_{fold}.bin')
+    joblib.dump(
+        lr, 
+        os.path.join(config.MODEL_OUTPUT, f'lr_{fold}.bin'))
 
 if __name__ == "__main__":
     run(fold=0)
