@@ -131,3 +131,6 @@ dmypy.json
 
 # VS Code
 .vscode/
+
+# Data files
+**/input/train_folds.csv
