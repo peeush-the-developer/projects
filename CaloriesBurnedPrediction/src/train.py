@@ -6,6 +6,7 @@ import joblib
 
 import os
 import config
+from argparse import ArgumentParser
 
 def run(fold):
     # Read the training data with folds
@@ -45,8 +46,14 @@ def run(fold):
         os.path.join(config.MODEL_OUTPUT, f'lr_{fold}.bin'))
 
 if __name__ == "__main__":
-    run(fold=0)
-    run(fold=1)
-    run(fold=2)
-    run(fold=3)
-    run(fold=4)
+
+    # Initialize the argument parser
+    ap = ArgumentParser()
+
+    # Add arguments that we expect to parse from CLI
+    ap.add_argument('--fold', type=int, required=True, help='Fold value to run the training script')
+
+    # Parse the arguments received
+    args = ap.parse_args()
+
+    run(fold=args.fold)
