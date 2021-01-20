@@ -1,14 +1,15 @@
-import numpy as np
-import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error
 import joblib
-
 import os
-import config
 from argparse import ArgumentParser
 
-def run(fold):
+import numpy as np
+import pandas as pd
+from sklearn.metrics import mean_absolute_error
+
+import config
+import model_dispatcher
+
+def run(fold, model_name):
     # Read the training data with folds
     df = pd.read_csv(config.TRAINING_FILE)
 
@@ -27,23 +28,23 @@ def run(fold):
     x_val = df_val[['Duration']].values
     y_val = df_val.Calories.values
 
-    # Initialize LinearRegression model
-    lr = LinearRegression()
+    # Initialize the model
+    model = model_dispatcher.models[model_name]
 
     # Fit the model on training data
-    lr.fit(x_train, y_train)
+    model.fit(x_train, y_train)
 
     # Predict on validation data
-    preds = lr.predict(x_val)
+    preds = model.predict(x_val)
 
     # Calculate the RMSE for the model
     rmse = np.sqrt(mean_absolute_error(y_val, preds))
-    print(f'Fold={fold}, RMSE={rmse:3f}')
+    print(f'Model={model_name}, Fold={fold} => RMSE={rmse:3f}')
 
     # save the model
     joblib.dump(
-        lr, 
-        os.path.join(config.MODEL_OUTPUT, f'lr_{fold}.bin'))
+        model, 
+        os.path.join(config.MODEL_OUTPUT, f'{model_name}_{fold}.bin'))
 
 if __name__ == "__main__":
 
@@ -52,8 +53,9 @@ if __name__ == "__main__":
 
     # Add arguments that we expect to parse from CLI
     ap.add_argument('--fold', type=int, required=True, help='Fold value to run the training script')
+    ap.add_argument('--model', type=str, required=True, help='Model name to run the training script')
 
     # Parse the arguments received
     args = ap.parse_args()
 
-    run(fold=args.fold)
+    run(fold=args.fold, model_name=args.model)
