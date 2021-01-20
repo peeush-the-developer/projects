@@ -20,12 +20,12 @@ def run(fold, model_name):
     df_val = df[df['kfold'] == fold].reset_index(drop=True)
 
     # As we know from our 'explore_data.ipynb' that only 'Duration', 'Heart_Rate' and 'Body_Temp' columns are relevant.
-    # For simplicity, we start with 'Duration' column to predict 'Calories'
-    x_train = df_train[['Duration']].values
+    # Let's take all relevant columns 'Duration', 'Heart_Rate', 'Body_Temp' to predict 'Calories'
+    x_train = df_train[['Duration', 'Heart_Rate', 'Body_Temp']].values
     y_train = df_train.Calories.values
 
     # Similarly for validation
-    x_val = df_val[['Duration']].values
+    x_val = df_val[['Duration', 'Heart_Rate', 'Body_Temp']].values
     y_val = df_val.Calories.values
 
     # Initialize the model
