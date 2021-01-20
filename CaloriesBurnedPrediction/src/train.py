@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
 
 import config
 import model_dispatcher
@@ -38,7 +38,7 @@ def run(fold, model_name):
     preds = model.predict(x_val)
 
     # Calculate the RMSE for the model
-    rmse = np.sqrt(mean_absolute_error(y_val, preds))
+    rmse = np.sqrt(mean_squared_error(y_val, preds))
     print(f'Model={model_name}, Fold={fold} => RMSE={rmse:3f}')
 
     # save the model
