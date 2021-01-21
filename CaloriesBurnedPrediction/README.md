@@ -22,7 +22,17 @@ Machine learning project on Calories burned prediction with Python.
 ## Conclusion
 
 + `Duration` column is enough to train and evaluate the model
-+ __RMSE__
-  + `Linear Regression` = 18.4
-  + `Decision Tree` = 16.6
-  + `Random Forest` = 16.6
++ __Metrics__
+  + `Linear Regression`
+    + RMSE=18.4
+    + R2=0.91
+  + `Decision Tree`
+    + RMSE=16.6
+    + R2=0.92
+  + `Random Forest`
+    + RMSE=16.6
+    + R2=0.92
+  + `Lasso regression`
+    + RMSE=11.9
+    + R2=0.96
+    + _(Columns used: Age, Height, Weight, Duration, Heart_Rate, Body_Temp)_
