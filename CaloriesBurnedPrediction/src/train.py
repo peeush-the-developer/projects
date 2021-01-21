@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_selection import SelectFromModel
 
@@ -76,7 +76,11 @@ def run(fold, model_name, use_duration = False):
 
     # Calculate the RMSE for the model
     rmse = np.sqrt(mean_squared_error(y_val, preds))
-    print(f'Model={model_name}, Fold={fold} => RMSE={rmse:3f}')
+
+    # Calculate the R2 score for the model
+    r2 = r2_score(y_val, preds)
+    
+    print(f'Model={model_name}, Fold={fold} => RMSE={rmse:.3f}, R2={r2:.3f}')
 
     # save the model
     joblib.dump(
