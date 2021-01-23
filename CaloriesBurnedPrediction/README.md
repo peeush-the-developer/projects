@@ -21,18 +21,19 @@ Machine learning project on Calories burned prediction with Python.
 
 ## Conclusion
 
-+ `Duration` column is enough to train and evaluate the model
 + __Metrics__
-  + `Linear Regression`
-    + RMSE=18.4
-    + R2=0.91
-  + `Decision Tree`
-    + RMSE=16.6
-    + R2=0.92
-  + `Random Forest`
-    + RMSE=16.6
-    + R2=0.92
-  + `Lasso regression`
-    + RMSE=11.9
-    + R2=0.96
-    + _(Columns used: Age, Height, Weight, Duration, Heart_Rate, Body_Temp)_
+  
+  COLUMNS | MODEL | RMSE | R2
+  --- | --- | --- | ---
+  ['Duration'] | Linear regression | 18.5 | 0.91
+  ['Duration'] | Lasso regression | 18.5 | 0.91
+  ['Duration'] | Decision tree | 16.6 | 0.92
+  ['Duration'] | Random forest | 16.6 | 0.92
+  ['Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Linear regression | 11.6 | 0.966
+  ['Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Lasso regression | 12.1 | 0.963
+  ['Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Decision tree | 7.3 | 0.986
+  ['Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Random forest | 4.8 | 0.994
+  ['Gender','Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Linear regression | 11.6 | 0.966
+  ['Gender','Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Lasso regression | 12.1 | 0.963
+  ['Gender','Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Decision tree | 5.6 | 0.992
+  ['Gender','Age','Height','Weight','Duration','Heart_Rate','Body_Temp'] | Random forest | 3.0 | 0.998
