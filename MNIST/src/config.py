@@ -1,2 +1,4 @@
-TRAINING_FILE_RAW = '../input/mnist_train.csv'
-TRAINING_FILE = '../input/mnist_train_folds.csv'
+TRAINING_FILE_RAW = '../input/train.csv'
+TRAINING_FILE = '../input/train_folds.csv'
+
+MODELS_OUTPUT_DIR = '../models/'
