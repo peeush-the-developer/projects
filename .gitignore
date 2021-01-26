@@ -135,6 +135,7 @@ dmypy.json
 # Data files
 **/input/train_folds.csv
 MNIST/input/
+TitanicDisaster/input/
 
 # Model files
 **/models/*.bin
