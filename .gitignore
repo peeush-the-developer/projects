@@ -139,3 +139,6 @@ TitanicDisaster/input/
 
 # Model files
 **/models/*.bin
+
+# Ignore Mac default dir
+.DS_Store
